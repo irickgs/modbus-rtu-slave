@@ -255,7 +255,7 @@ module.exports = function (RED) {
                 data.forEach((v, i) => {
                     bfr.writeUInt16BE(v, i * bufferSizeFactor)
                 })
-                node.logError('writing ' + bfr.toString('hex') + ' to address ' + localAddress)
+                node.trace('writing ' + bfr.toString('hex') + ' to address ' + localAddress)
                 // copy uint16s into buffer:
                 localAddress *= bufferSizeFactor
                 buffer.fill(new Uint8Array(bfr), localAddress, localAddress + data.length * bufferSizeFactor)
@@ -268,7 +268,7 @@ module.exports = function (RED) {
                     } else { // clear bit
                         newValue = oldValue & ~Math.pow(2, localAddress % 8)
                     }
-                    node.logError('writing ' + newValue + ' to address ' + localAddress)
+                    node.trace('writing ' + newValue + ' to address ' + localAddress)
                     buffer.writeUInt8(newValue, Math.floor(localAddress / 8))
                     localAddress++
                 }
