@@ -143,7 +143,7 @@ module.exports = function (RED) {
         
         
         node.on('input', function (msg, send, done) {
-            node.error(msg)
+            node.trace(msg)
             
             // Only update node connection, if the payload contains a slaveId
             if(msg['payload']['slaveId'] !== undefined){
@@ -212,28 +212,28 @@ module.exports = function (RED) {
             let buffer
             if (registerNum < discreteOffset) {
                 // coils
-                node.error("updating coils")
+                node.trace("updating coils")
                 if (convertToLocal) {
                     localAddress = registerNum - coilsOffset
                 }
                 buffer = node.server.coils
             } else if (registerNum < inputOffset) {
                 // discrete
-                node.error("updating discrete")
+                node.trace("updating discrete")
                 if (convertToLocal) {
                     localAddress = registerNum - discreteOffset
                 }
                 buffer = node.server.discrete
             } else if (registerNum < holdingOffset) {
                 // input
-                node.error("updating input")
+                node.trace("updating input")
                 if (convertToLocal) {
                     localAddress = registerNum - inputOffset
                 }
                 buffer = node.server.input
             } else {
                 // holding
-                node.error("updating holding")
+                node.trace("updating holding")
                 if (convertToLocal) {
                     localAddress = registerNum - holdingOffset
                 }
@@ -255,7 +255,7 @@ module.exports = function (RED) {
                 data.forEach((v, i) => {
                     bfr.writeUInt16BE(v, i * bufferSizeFactor)
                 })
-                node.logError('writing ' + bfr.toString('hex') + ' to address ' + localAddress)
+                node.trace('writing ' + bfr.toString('hex') + ' to address ' + localAddress)
                 // copy uint16s into buffer:
                 localAddress *= bufferSizeFactor
                 buffer.fill(new Uint8Array(bfr), localAddress, localAddress + data.length * bufferSizeFactor)
@@ -268,7 +268,7 @@ module.exports = function (RED) {
                     } else { // clear bit
                         newValue = oldValue & ~Math.pow(2, localAddress % 8)
                     }
-                    node.logError('writing ' + newValue + ' to address ' + localAddress)
+                    node.trace('writing ' + newValue + ' to address ' + localAddress)
                     buffer.writeUInt8(newValue, Math.floor(localAddress / 8))
                     localAddress++
                 }
