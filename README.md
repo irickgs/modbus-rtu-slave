@@ -7,5 +7,5 @@ Provides the following nodes:
 e.g, when writing the address 30001, it will always be written into the Input registers, since addresses [30001:40000] are conventionally the Input registers. When using the 'convertToLocal' option when writing, the address 30001 would automatically be converted to the address 0 (of the Input registers). If NOT using the 'convertToLocal' option, the address 30001 would stay as 30001. Since all buffers allow upto 50000 values, this would also work and not overflow into another buffer. (This unconventional approach is supported due to a requirement of a project.)
 --------------------------------------------------------------------------------------
 
-Simulacion en node-red utilizando dos conversores usb/485. 
+Simulacion del protocolo modbusRTU en node-red utilizando dos conversores usb/485. 
 <img width="915" height="323" alt="Captura de pantalla de 2025-09-07 11-56-30" src="https://github.com/user-attachments/assets/a3952937-884b-4018-96ff-ef3e096d8fe4" />
