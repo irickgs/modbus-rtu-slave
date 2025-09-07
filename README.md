@@ -10,3 +10,5 @@ e.g, when writing the address 30001, it will always be written into the Input re
 Simulacion del protocolo modbusRTU en node-red utilizando dos conversores usb/485. 
 <img width="915" height="323" alt="Captura de pantalla de 2025-09-07 11-56-30" src="https://github.com/user-attachments/assets/a3952937-884b-4018-96ff-ef3e096d8fe4" />
 ![usb-485](https://github.com/user-attachments/assets/4f65d119-697c-415b-a048-e0d5cf2acc6a)
+Descargar flow en -> examples/flows2.json
+
