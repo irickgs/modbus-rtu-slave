@@ -1,0 +1,201 @@
+[
+    {
+        "id": "885fd43b5882dfee",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "e7d68732f314342a",
+        "type": "Modbus-RTU-Slave",
+        "z": "885fd43b5882dfee",
+        "name": "",
+        "slaveId": "1",
+        "serialPort": "/dev/ttyUSB0",
+        "baudRate": "9600",
+        "dataBits": "8",
+        "stopBits": "1",
+        "parity": "none",
+        "logEnabled": false,
+        "showErrors": false,
+        "x": 530,
+        "y": 100,
+        "wires": [
+            [
+                "3677ce44a2133482"
+            ]
+        ]
+    },
+    {
+        "id": "3677ce44a2133482",
+        "type": "debug",
+        "z": "885fd43b5882dfee",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 720,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "bd7ed47ad11da215",
+        "type": "modbus-read",
+        "z": "885fd43b5882dfee",
+        "name": "",
+        "topic": "",
+        "showStatusActivities": false,
+        "logIOActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "1",
+        "quantity": "1",
+        "rate": "1",
+        "rateUnit": "h",
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "server": "0bfe853bf75b237e",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "x": 530,
+        "y": 260,
+        "wires": [
+            [
+                "07f9b320997da44b"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "07f9b320997da44b",
+        "type": "debug",
+        "z": "885fd43b5882dfee",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 720,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "4d2fdda7f9e1885c",
+        "type": "modbus-write",
+        "z": "885fd43b5882dfee",
+        "name": "",
+        "showStatusActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "unitid": "1",
+        "dataType": "HoldingRegister",
+        "adr": "1",
+        "quantity": "1",
+        "server": "0bfe853bf75b237e",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "x": 520,
+        "y": 200,
+        "wires": [
+            [
+                "185c481380cadc67"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "9541224a9ce72cda",
+        "type": "inject",
+        "z": "885fd43b5882dfee",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "133",
+        "payloadType": "num",
+        "x": 350,
+        "y": 200,
+        "wires": [
+            [
+                "4d2fdda7f9e1885c"
+            ]
+        ]
+    },
+    {
+        "id": "185c481380cadc67",
+        "type": "debug",
+        "z": "885fd43b5882dfee",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 720,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "0bfe853bf75b237e",
+        "type": "modbus-client",
+        "name": "",
+        "clienttype": "serial",
+        "bufferCommands": true,
+        "stateLogEnabled": false,
+        "queueLogEnabled": false,
+        "failureLogEnabled": true,
+        "tcpHost": "127.0.0.1",
+        "tcpPort": 502,
+        "tcpType": "DEFAULT",
+        "serialPort": "/dev/ttyUSB1",
+        "serialType": "RTU-BUFFERD",
+        "serialBaudrate": 9600,
+        "serialDatabits": 8,
+        "serialStopbits": 1,
+        "serialParity": "none",
+        "serialConnectionDelay": 100,
+        "serialAsciiResponseStartDelimiter": "0x3A",
+        "unit_id": 1,
+        "commandDelay": 1,
+        "clientTimeout": 1000,
+        "reconnectOnTimeout": true,
+        "reconnectTimeout": 2000,
+        "parallelUnitIdsAllowed": true,
+        "showErrors": false,
+        "showWarnings": true,
+        "showLogs": true
+    },
+    {
+        "id": "4852f5ae856566ce",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "@krakul/node-red-modbus-rtu-slave": "1.0.1",
+            "node-red-contrib-modbus": "5.43.0"
+        }
+    }
+]
